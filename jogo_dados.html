@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Jogo de Dados</title>
+    <meta charset="UTF-8">
+
+    <style>
+        body {
+            background: steelblue;
+            color: white;
+        }
+
+        .jogo {
+            width: 60%;
+            font-size: 40px;
+            margin-left: 20%;
+            margin-top: 50px;
+            float: left;
+        }
+
+        .titulo {
+            margin: 20px;
+        }
+
+        .titulo span {
+            padding: 10px;
+        }
+
+        .titulo button {
+            padding: 10px;
+            float: right;
+        }
+
+        .jogadores {
+            width: 100%;
+            float: left;
+        }
+
+        .jogador {
+            width: 100%;
+            float: left;
+        }
+
+        .nome {
+            width: 20%;
+            float: left;
+            margin-top: 5%;
+        }
+
+        .nome input {
+            width: 80%;
+            font-size: 20px;
+            background: transparent;
+            padding: 10px;
+            color: white;
+        }
+
+        .dados {
+            width: 40%;
+            float: left;
+        }
+
+        .dados img {
+            width: 40%;
+            float: left;
+            padding: 2%;
+        }
+
+        .total {
+            width: 20%;
+            float: left;
+            margin-top: 5%;
+        }
+
+        .total span {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="jogo">
+
+        <div class="titulo">
+            <span class="resultado">Informe o nome dos jogadores</span>
+            <button type="button" onClick="jogar()">Jogue os dados!</button>
+        </div>
+
+        <div class="jogadores">
+            <div class="jogador">
+                <div class="nome">
+                    <input id="jogador1" type="text" minlength="1" maxlength="20" value="Jogador nº 1" />
+                </div>
+                <div class="dados">
+                    <img class="img1A" alt="dado 1 do jogador 1" src="dado_.png">
+                    <img class="img1B" alt="dado 2 do jogador 1" src="dado_.png">
+                </div>
+                <div class="total">
+                    <span id="total1"></span>
+                </div>
+            </div>
+
+            <div class="jogador">
+                <div class="nome">
+                    <input id="jogador2" type="text" minlength="1" maxlength="20" value="Jogador nº 2" />
+                </div>
+                <div class="dados">
+                    <img class="img2A" alt="dado 1 do jogador 2" src="dado_.png">
+                    <img class="img2B" alt="dado 2 do jogador 2" src="dado_.png">
+                </div>
+                <div class="total">
+                    <span id="total2"></span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        function jogar() {
+            var jogador1 = document.getElementById("jogador1").value;
+            var jogador2 = document.getElementById("jogador2").value;
+
+            var dado1A = Math.floor(Math.random() * 6) + 1;
+            var dado1B = Math.floor(Math.random() * 6) + 1;
+            var dado2A = Math.floor(Math.random() * 6) + 1;
+            var dado2B = Math.floor(Math.random() * 6) + 1;
+
+            document.querySelector(".img1A").setAttribute("src", "dado" + dado1A + ".png");
+            document.querySelector(".img1B").setAttribute("src", "dado" + dado1B + ".png");
+            document.querySelector(".img2A").setAttribute("src", "dado" + dado2A + ".png");
+            document.querySelector(".img2B").setAttribute("src", "dado" + dado2B + ".png");
+
+            var total1 = dado1A + dado1B;
+            var total2 = dado2A + dado2B;
+
+            document.querySelector("#total1").innerHTML = total1;
+            document.querySelector("#total2").innerHTML = total2;
+
+            if (total1 === total2) {
+                document.querySelector(".resultado").innerHTML = "Empate!";
+            } else if (total1 > total2) {
+                document.querySelector(".resultado").innerHTML = (jogador1 + " Ganhou!");
+            } else {
+                document.querySelector(".resultado").innerHTML = (jogador2 + " Ganhou!");
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
